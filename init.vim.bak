@@ -1,0 +1,108 @@
+set nocompatible
+filetype off
+set tabstop=2
+set termguicolors
+
+"need this for the icons to work
+set encoding=UTF-8
+
+set rtp+=~/.config/nvim/bundle/Vundle.vim
+call vundle#begin()
+"for vundle to work
+Plugin 'VundleVim/Vundle.vim'
+"autocomplete server
+Plugin 'neoclide/coc.nvim', {'branch':'release'}
+"gets the small info line at the bootom
+Plugin 'vim-airline/vim-airline'
+"gets some theme's support for airline
+Plugin 'vim-airline/vim-airline-themes'
+"the file tree on ur left side
+Plugin 'preservim/nerdtree'
+"emmet support for vim ctrl+y+, to toggle
+Plugin 'mattn/emmet-vim'
+"theme for vim
+Plugin 'mhartington/oceanic-next'
+"colors matching brackets for better visuals
+"Plugin 'frazrepo/vim-rainbow'
+""Plugin 'vim-syntastic/syntastic'
+"linting and error checking for vim, need eslint for jav"asript and typesript
+Plugin 'dense-analysis/ale'
+"commenting in vim, key is \ + , + spacebar 
+Plugin 'preservim/nerdcommenter'
+"autocreates right brackets for u
+Plugin 'jiangmiao/auto-pairs'
+"file icons that u can see in nerdtree and airline needs utf-8
+Plugin 'ryanoasis/vim-devicons'
+"used for getting git status in nerdtree ig
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'gosukiwi/vim-atom-dark'
+""Plugin 'terryma/vim-multiple-cursors'
+"""Plugin 'joshdick/onedark.vim'
+"preview colors
+Plugin 'ap/vim-css-color'
+"floating terminal
+Plugin 'voldikss/vim-floaterm'
+Plugin 'turbio/bracey.vim'
+Plugin 'mhinz/vim-crates'
+"Plugin 'Nopik/vim-nerdtree-direnter'
+Plugin 'junegunn/fzf.vim'
+"the hot theme anna suggested
+Plugin 'arzg/vim-colors-xcode'
+
+call vundle#end()
+filetype plugin indent on
+set number
+"enable airline for top tabs
+let g:airline#extensions#tabline#enabled = 1
+
+"key to switch between tabs
+nnoremap <C-e> :bn<CR>
+"key to save
+nnoremap <C-S> :update<CR>
+"key to toggle nerdtree
+nnoremap <F10> :NERDTreeToggle<CR>
+"key to quit vim on a whole
+nnoremap <C-S-x> :qa!<CR>
+"floaterm window shortcut
+nnoremap   <silent>   <F12>   <C-\><C-n>:FloatermToggle<CR>
+"easier emmet shortcut
+"nnoremap <silent> <F10> <C-y-,><CR>
+let g:user_emmet_leader_key=','
+
+"enable rainbow brackets
+let g:rainbow_active = 1
+colorscheme xcodedarkhc
+"open nerdtree everytimg u open vim
+autocmd VimEnter * NERDTree | wincmd p
+
+"Syntastic stuff not neededcuz ale good
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag}
+"set statusline+=%*
+
+"call the function that closes nerdtree when the other tabs r closed
+autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
+
+" Close all open buffers on entering a window if the only
+" buffer that's left is the NERDTree buffer
+" the function that does that
+function! s:CloseIfOnlyNerdTreeLeft()
+  if exists("t:NERDTreeBufName")
+    if bufwinnr(t:NERDTreeBufName) != -1
+      if winnr("$") == 1
+        q
+      endif
+    endif
+  endif
+endfunction
+
+"some more useless syntastic stuff
+"let g:syntastic_enable_signs=1
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 1
+syntax on
+
+"enable the hot colorscheme
+":colorscheme xcodedarkhc
