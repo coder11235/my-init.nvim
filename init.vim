@@ -17,21 +17,12 @@ Plugin 'neoclide/coc.nvim', {'branch':'release'}
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'preservim/nerdtree'
-Plugin 'mattn/emmet-vim'
-Plugin 'mhartington/oceanic-next'
-Plugin 'dense-analysis/ale'
 Plugin 'preservim/nerdcommenter'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'gosukiwi/vim-atom-dark'
 Plugin 'ap/vim-css-color'
-Plugin 'voldikss/vim-floaterm'
-Plugin 'turbio/bracey.vim'
-Plugin 'mhinz/vim-crates'
 Plugin 'junegunn/fzf.vim'
-Plugin 'arzg/vim-colors-xcode'
-Plugin 'pangloss/vim-javascript'
-Plugin 'leafgarland/typescript-vim'
 Plugin 'ryanoasis/vim-devicons'
 call vundle#end()
 filetype plugin indent on
@@ -46,11 +37,11 @@ nnoremap   <silent>   <F12>   <C-\><C-n>:FloatermToggle<CR>
 nnoremap <C-j> :bp<CR>
 nnoremap <C-k> :bn<CR>
 
-let g:user_emmet_leader_key=','
-let g:rainbow_active = 1
-colorscheme xcodedarkhc
+colorscheme atom-dark
+
 autocmd VimEnter * NERDTree | wincmd p
 autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
+
 function! s:CloseIfOnlyNerdTreeLeft()
   if exists("t:NERDTreeBufName")
     if bufwinnr(t:NERDTreeBufName) != -1
